@@ -13,7 +13,6 @@ export default function App() {
     setDegree(!degree)
   }
 
-
   React.useEffect(() => {
     console.log(degree)
   }, [degree])
