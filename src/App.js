@@ -4,6 +4,7 @@ import React from "react"
 import Mainbody from './Mainbody'
 import { Button } from 'antd'
 import Character from './Character';
+import Character_test from './Character copy'
 
 
 export default function App() {
@@ -21,7 +22,7 @@ export default function App() {
     <div className="App">
       <header className="App-header">
         <Button onClick={handleClick}> Change {degree === true ? "true" : "false"} </Button>
-        {degree === true ? <Mainbody style={{ display: "block" }} /> : <Character />}
+        {degree === true ? <Mainbody style={{ display: "block" }} /> : <Character_test />}
       </header>
     </div>
   );
