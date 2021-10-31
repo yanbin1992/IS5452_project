@@ -21,6 +21,7 @@ export default class CharacterRun extends Component {
     if (!this.frameId) {
       this.frameId = requestAnimationFrame(this.animate);
     }
+    // Stacy()
   };
   stop = () => {
     cancelAnimationFrame(this.frameId);
@@ -37,6 +38,7 @@ export default class CharacterRun extends Component {
   };
 
   render() {
+
     let mode = 1
     const handleClick = () => {
       console.log("HandleClick Test");

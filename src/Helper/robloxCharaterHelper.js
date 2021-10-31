@@ -4,6 +4,7 @@ import * as THREE from "three";
 import OrbitControls from "three-orbitcontrols";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
+
 export function Roblox() {
   // Set our main variables
   let scene,
@@ -23,7 +24,8 @@ export function Roblox() {
 
   function init() {
     const MODEL_PATH =
-    "../../model/scene.gltf";
+    // "./../model/Roblox/scene.gltf";
+    "./model/Roblox/scene.gltf"
     const canvas = document.querySelector("#c");
     const backgroundColor = 0xf1f1f1;
 
@@ -50,8 +52,9 @@ export function Roblox() {
     camera.position.y = -3;
 
     let stacy_txt = new THREE.TextureLoader().load(
-      "../../model/textures/Kabose3h1Mtl_baseColor.png"
+      "./model/Roblox/textures/Kabose3h1Mtl_baseColor.png"
     );
+
     stacy_txt.flipY = false;
 
     const stacy_mtl = new THREE.MeshPhongMaterial({

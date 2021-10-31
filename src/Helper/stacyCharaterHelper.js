@@ -24,7 +24,7 @@ export function Stacy() {
 
   function init() {
     const MODEL_PATH =
-    "../../model/Stacy/stacy_lightweight.glb";
+    "./model/Stacy/stacy_lightweight.glb";
     const canvas = document.querySelector("#c");
     const backgroundColor = 0xf1f1f1;
 
@@ -51,7 +51,7 @@ export function Stacy() {
     camera.position.y = -3;
 
     let stacy_txt = new THREE.TextureLoader().load(
-      "../../model/Stacy/stacy.jpeg"
+      "./model/Stacy/stacy.jpeg"
     );
 
     console.log(stacy_txt)
@@ -94,7 +94,7 @@ export function Stacy() {
         
         scene.add(model);
         console.log("Model",model, scene)
-        loaderAnim.remove();
+        // loaderAnim.remove();
 
         mixer = new THREE.AnimationMixer(model);
 
