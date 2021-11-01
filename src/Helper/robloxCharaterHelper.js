@@ -51,6 +51,8 @@ export function Roblox() {
     camera.position.x = 0;
     camera.position.y = -3;
 
+    const controls = new OrbitControls(camera, renderer.domElement);
+
     let stacy_txt = new THREE.TextureLoader().load(
       "./model/Roblox/textures/Kabose3h1Mtl_baseColor.png"
     );

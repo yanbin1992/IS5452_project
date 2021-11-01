@@ -39,7 +39,7 @@ export default class CharacterRun extends Component {
 
   render() {
 
-    let mode = 1
+    let mode = 0
     const handleClick = () => {
       console.log("HandleClick Test");
       if(mode === 0){

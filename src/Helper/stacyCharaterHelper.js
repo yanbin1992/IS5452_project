@@ -94,7 +94,7 @@ export function Stacy() {
         
         scene.add(model);
         console.log("Model",model, scene)
-        // loaderAnim.remove();
+        loaderAnim.remove();
 
         mixer = new THREE.AnimationMixer(model);
 
