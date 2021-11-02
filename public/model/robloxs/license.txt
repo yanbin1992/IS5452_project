@@ -1,0 +1,11 @@
+Model Information:
+* title:	Roblox Charecters
+* source:	https://sketchfab.com/3d-models/roblox-charecters-754d5a059be54d2f9ac40ace35c39a4c
+* author:	jordanstasak (https://sketchfab.com/jordanstasak)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Roblox Charecters" (https://sketchfab.com/3d-models/roblox-charecters-754d5a059be54d2f9ac40ace35c39a4c) by jordanstasak (https://sketchfab.com/jordanstasak) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

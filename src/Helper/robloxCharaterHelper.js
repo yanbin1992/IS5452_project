@@ -5,28 +5,21 @@ import OrbitControls from "three-orbitcontrols";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 
-export function Roblox() {
+export function Roblox(index) {
   // Set our main variables
   let scene,
     renderer,
     camera,
     model, // Our character
-    neck, // Reference to the neck bone in the skeleton
-    waist, // Reference to the waist bone in the skeleton
-    possibleAnims, // Animations found in our file
     mixer, // THREE.js animations mixer
-    idle, // Idle, the default state our character returns to
-    clock = new THREE.Clock(), // Used for anims, which run to a clock instead of frame rate
-    currentlyAnimating = false, // Used to check whether characters neck is being used in another anim
-    raycaster = new THREE.Raycaster();// Used to detect the click on our character;
+    clock = new THREE.Clock() // Used for anims, which run to a clock instead of frame rate
 
-  init();
+  init(index);
 
-  function init() {
+  function init(index) {
     const MODEL_PATH =
-    // "./../model/Roblox/scene.gltf";
     "./model/Roblox/scene.gltf"
-    const canvas = document.querySelector("#c");
+    const canvas = document.querySelector("#d");
     const backgroundColor = 0xf1f1f1;
 
     // Init the scene
@@ -52,15 +45,16 @@ export function Roblox() {
     camera.position.y = -3;
 
     const controls = new OrbitControls(camera, renderer.domElement);
-
-    let stacy_txt = new THREE.TextureLoader().load(
-      "./model/Roblox/textures/Kabose3h1Mtl_baseColor.png"
+    const randomSubIndex = Math.floor(Math.random()*4 + 1)
+    console.log(`Kabose3h1Mtl_baseColor_${index}_${randomSubIndex}.png`)
+    let roblox_txt = new THREE.TextureLoader().load(
+      `./model/Roblox/textures/Kabose3h1Mtl_baseColor_${index}_${randomSubIndex}.png`
     );
 
-    stacy_txt.flipY = false;
+    roblox_txt.flipY = false;
 
     const stacy_mtl = new THREE.MeshPhongMaterial({
-      map: stacy_txt,
+      map: roblox_txt,
       color: 0xffffff,
       skinning: true,
     });
@@ -71,32 +65,20 @@ export function Roblox() {
       MODEL_PATH,
       function (gltf) {
         model = gltf.scene;
-        let fileAnimations = gltf.animations;
-        console.log("animations", fileAnimations)
+        console.log(gltf)
+
         model.traverse((o) => {
           if (o.isMesh) {
             o.castShadow = true;
             o.receiveShadow = true;
             o.material = stacy_mtl;
           }
-          // // Reference the neck and waist bones
-          // if (o.isBone && o.name === "mixamorigNeck") {
-          //   neck = o;
-          // }
-          // if (o.isBone && o.name === "mixamorigSpine") {
-          //   waist = o;
-          // }
         });
 
-        // model.scale.set(7, 7, 7);
-        model.scale.set(3, 3, 3);
-
+        model.scale.set(2.5, 2.5, 2.5);
         model.position.y = -11;
-        
         model.rotateY(Math.PI)
         scene.add(model);
-        console.log("Model",model, scene)
-
       },
       undefined, // We don't need this function
       function (error) {
@@ -182,112 +164,4 @@ export function Roblox() {
     return needResize;
   }
 
-  window.addEventListener("click", (e) => raycast(e));
-  window.addEventListener("touchend", (e) => raycast(e, true));
-
-  function raycast(e, touch = false) {
-    var mouse = {};
-    if (touch) {
-      mouse.x = 2 * (e.changedTouches[0].clientX / window.innerWidth) - 1;
-      mouse.y = 1 - 2 * (e.changedTouches[0].clientY / window.innerHeight);
-    } else {
-      mouse.x = 2 * (e.clientX / window.innerWidth) - 1;
-      mouse.y = 1 - 2 * (e.clientY / window.innerHeight);
-    }
-    // update the picking ray with the camera and mouse position
-    raycaster.setFromCamera(mouse, camera);
-
-    // calculate objects intersecting the picking ray
-    var intersects = raycaster.intersectObjects(scene.children, true);
-
-    if (intersects[0]) {
-      var object = intersects[0].object;
-
-      if (object.name === "stacy") {
-        if (!currentlyAnimating) {
-          currentlyAnimating = true;
-          playOnClick();
-        }
-      }
-    }
-  }
-
-  // Get a random animation, and play it
-  function playOnClick() {
-    let anim = Math.floor(Math.random() * possibleAnims.length) + 0;
-    playModifierAnimation(idle, 0.25, possibleAnims[anim], 0.25);
-  }
-
-  function playModifierAnimation(from, fSpeed, to, tSpeed) {
-    to.setLoop(THREE.LoopOnce);
-    to.reset();
-    to.play();
-    from.crossFadeTo(to, fSpeed, true);
-    setTimeout(function () {
-      from.enabled = true;
-      to.crossFadeTo(from, tSpeed, true);
-      currentlyAnimating = false;
-    }, to._clip.duration * 1000 - (tSpeed + fSpeed) * 1000);
-  }
-
-  document.addEventListener("mousemove", function (e) {
-    var mousecoords = getMousePos(e);
-    if (neck && waist) {
-      moveJoint(mousecoords, neck, 50);
-      moveJoint(mousecoords, waist, 30);
-    }
-  });
-
-  function getMousePos(e) {
-    return { x: e.clientX, y: e.clientY };
-  }
-
-  function moveJoint(mouse, joint, degreeLimit) {
-    let degrees = getMouseDegrees(mouse.x, mouse.y, degreeLimit);
-    joint.rotation.y = THREE.Math.degToRad(degrees.x);
-    joint.rotation.x = THREE.Math.degToRad(degrees.y);
-  }
-
-  function getMouseDegrees(x, y, degreeLimit) {
-    let dx = 0,
-      dy = 0,
-      xdiff,
-      xPercentage,
-      ydiff,
-      yPercentage;
-
-    let w = { x: window.innerWidth, y: window.innerHeight };
-
-    // Left (Rotates neck left between 0 and -degreeLimit)
-    // 1. If cursor is in the left half of screen
-    if (x <= w.x / 2) {
-      // 2. Get the difference between middle of screen and cursor position
-      xdiff = w.x / 2 - x;
-      // 3. Find the percentage of that difference (percentage toward edge of screen)
-      xPercentage = (xdiff / (w.x / 2)) * 100;
-      // 4. Convert that to a percentage of the maximum rotation we allow for the neck
-      dx = ((degreeLimit * xPercentage) / 100) * -1;
-    }
-
-    // Right (Rotates neck right between 0 and degreeLimit)
-    if (x >= w.x / 2) {
-      xdiff = x - w.x / 2;
-      xPercentage = (xdiff / (w.x / 2)) * 100;
-      dx = (degreeLimit * xPercentage) / 100;
-    }
-    // Up (Rotates neck up between 0 and -degreeLimit)
-    if (y <= w.y / 2) {
-      ydiff = w.y / 2 - y;
-      yPercentage = (ydiff / (w.y / 2)) * 100;
-      // Note that I cut degreeLimit in half when she looks up
-      dy = ((degreeLimit * 0.5 * yPercentage) / 100) * -1;
-    }
-    // Down (Rotates neck down between 0 and degreeLimit)
-    if (y >= w.y / 2) {
-      ydiff = y - w.y / 2;
-      yPercentage = (ydiff / (w.y / 2)) * 100;
-      dy = (degreeLimit * yPercentage) / 100;
-    }
-    return { x: dx, y: dy };
-  }
 }

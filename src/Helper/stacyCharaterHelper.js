@@ -4,7 +4,7 @@ import * as THREE from "three";
 import OrbitControls from "three-orbitcontrols";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
-export function Stacy() {
+export function Stacy(index) {
   // Set our main variables
   let scene,
     renderer,
@@ -17,14 +17,12 @@ export function Stacy() {
     idle, // Idle, the default state our character returns to
     clock = new THREE.Clock(), // Used for anims, which run to a clock instead of frame rate
     currentlyAnimating = false, // Used to check whether characters neck is being used in another anim
-    raycaster = new THREE.Raycaster(), // Used to detect the click on our character
-    loaderAnim = document.getElementById("js-loader");
+    raycaster = new THREE.Raycaster() // Used to detect the click on our character
 
   init();
 
   function init() {
-    const MODEL_PATH =
-    "./model/Stacy/stacy_lightweight.glb";
+    const MODEL_PATH = "./model/Stacy/stacy_lightweight.glb";
     const canvas = document.querySelector("#c");
     const backgroundColor = 0xf1f1f1;
 
@@ -50,11 +48,9 @@ export function Stacy() {
     camera.position.x = 0;
     camera.position.y = -3;
 
-    let stacy_txt = new THREE.TextureLoader().load(
-      "./model/Stacy/stacy.jpeg"
-    );
+    const controls = new OrbitControls(camera, renderer.domElement);
 
-    console.log(stacy_txt)
+    let stacy_txt = new THREE.TextureLoader().load("./model/Stacy/stacy.jpeg");
     stacy_txt.flipY = false;
 
     const stacy_mtl = new THREE.MeshPhongMaterial({
@@ -69,10 +65,8 @@ export function Stacy() {
       MODEL_PATH,
       function (gltf) {
         model = gltf.scene;
-        console.log(model)
-
         let fileAnimations = gltf.animations;
-        console.log("animations", fileAnimations)
+        console.log("animations", fileAnimations);
         model.traverse((o) => {
           if (o.isMesh) {
             o.castShadow = true;
@@ -91,10 +85,8 @@ export function Stacy() {
         model.scale.set(7, 7, 7);
 
         model.position.y = -11;
-        
+
         scene.add(model);
-        console.log("Model",model, scene)
-        loaderAnim.remove();
 
         mixer = new THREE.AnimationMixer(model);
 
@@ -198,6 +190,7 @@ export function Stacy() {
     return needResize;
   }
 
+
   window.addEventListener("click", (e) => raycast(e));
   window.addEventListener("touchend", (e) => raycast(e, true));
 
@@ -218,20 +211,19 @@ export function Stacy() {
 
     if (intersects[0]) {
       var object = intersects[0].object;
-
       if (object.name === "stacy") {
         if (!currentlyAnimating) {
           currentlyAnimating = true;
-          playOnClick();
+          playOnClick(index);
         }
       }
     }
   }
-
-  // Get a random animation, and play it
-  function playOnClick() {
-    let anim = Math.floor(Math.random() * possibleAnims.length) + 0;
-    playModifierAnimation(idle, 0.25, possibleAnims[anim], 0.25);
+  // Get a  animation, and play it
+  function playOnClick(index) {
+    // let anim = Math.floor(Math.random() * possibleAnims.length) + 0;
+    console.log(idle)
+    playModifierAnimation(idle, 0.25, possibleAnims[index], 0.25);
   }
 
   function playModifierAnimation(from, fSpeed, to, tSpeed) {
@@ -259,9 +251,15 @@ export function Stacy() {
   }
 
   function moveJoint(mouse, joint, degreeLimit) {
-    let degrees = getMouseDegrees(mouse.x, mouse.y, degreeLimit);
-    joint.rotation.y = THREE.Math.degToRad(degrees.x);
-    joint.rotation.x = THREE.Math.degToRad(degrees.y);
+    if (mouse.x - window.innerWidth / 2 > 0) {
+      let degrees = getMouseDegrees(
+        (mouse.x - window.innerWidth / 2) * 2,
+        mouse.y,
+        degreeLimit
+      );
+      joint.rotation.y = THREE.Math.degToRad(degrees.x);
+      joint.rotation.x = THREE.Math.degToRad(degrees.y);
+    }
   }
 
   function getMouseDegrees(x, y, degreeLimit) {
