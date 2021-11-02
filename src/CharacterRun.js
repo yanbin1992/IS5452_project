@@ -41,7 +41,7 @@ export default class CharacterRun extends Component {
       <div
         style={{
           display: "flex",
-          justifyContent: "space-around",
+          justifyContent: LayoutHelper.windowHelper().width > LayoutHelper.windowHelper().height ? "space-around" : "center",
         }}
         ref={(mount) => {
           this.mount = mount;
@@ -62,7 +62,7 @@ export default class CharacterRun extends Component {
               position: "absolute",
               top: "50px",
               left: 0,
-              width: LayoutHelper.windowHelper().width / 2,
+              width: LayoutHelper.windowHelper().width > LayoutHelper.windowHelper().height ? LayoutHelper.windowHelper().width / 2: LayoutHelper.windowHelper().width,
               height: LayoutHelper.windowHelper().height - 100,
             }}
           ></canvas>
@@ -75,8 +75,8 @@ export default class CharacterRun extends Component {
           {this.state.stacyShow ? (
             <Button onClick={() => Stacy(5)}>Test</Button>
           ) : (
-            <div>
-              <div>
+            <div style={{display: LayoutHelper.windowHelper().width > LayoutHelper.windowHelper().height? "initial": "none"}}>
+              <div >
                 <Button onClick={() => Roblox2(1)}>Test_1</Button>
                 <Button onClick={() => Roblox2(2)}>Test_2</Button>
                 <Button onClick={() => Roblox2(3)}>Test_3</Button>
@@ -92,7 +92,7 @@ export default class CharacterRun extends Component {
               position: "absolute",
               top: "50px",
               right: 0,
-              width: LayoutHelper.windowHelper().width / 2,
+              width: LayoutHelper.windowHelper().width > LayoutHelper.windowHelper().height ? LayoutHelper.windowHelper().width / 2 : 0,
               height: LayoutHelper.windowHelper().height - 100,
             }}
           ></canvas>

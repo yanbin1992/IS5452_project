@@ -151,7 +151,7 @@ export function Roblox(index) {
 
   function resizeRendererToDisplaySize(renderer) {
     const canvas = renderer.domElement;
-    let width = window.innerWidth;
+    let width = window.innerWidth / 2;
     let height = window.innerHeight;
     let canvasPixelWidth = canvas.width / window.devicePixelRatio;
     let canvasPixelHeight = canvas.height / window.devicePixelRatio;
