@@ -1,1 +1,1 @@
-git pull && yarn install && yarn build
+git pull && yarn build
