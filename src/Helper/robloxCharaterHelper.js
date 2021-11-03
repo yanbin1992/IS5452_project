@@ -78,6 +78,7 @@ export function Roblox(index) {
         model.scale.set(2.5, 2.5, 2.5);
         model.position.y = -11;
         model.rotateY(Math.PI)
+        console.log(model)
         scene.add(model);
       },
       undefined, // We don't need this function

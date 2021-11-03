@@ -4,7 +4,7 @@ import * as THREE from "three";
 import OrbitControls from "three-orbitcontrols";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
-export function Roblox2(index) {
+export function Female(index) {
   // Set our main variables
   let scene,
     renderer,
@@ -17,8 +17,7 @@ export function Roblox2(index) {
 
   function init(index) {
     const MODEL_PATH =
-      // "./model/Roblox/scene.gltf"
-      "./model/robloxs/scene.gltf";
+      "./model/roblox_gfx_girl/scene.gltf";
 
     const canvas = document.querySelector("#c");
     const backgroundColor = 0xf1f1f1;
@@ -45,22 +44,12 @@ export function Roblox2(index) {
     camera.position.x = 0;
     camera.position.y = -3;
 
-    const roblox2Texture = [
-      "MixPat_Base_diffuse",
-      "Officer_Base_diffuse",
-      "Special_Forces_Base_diffuse",
-      "Tactical_Base_diffuse",
-    ];
     const controls = new OrbitControls(camera, renderer.domElement);
     const randomSubIndex = Math.floor(Math.random() * 4 + 1);
-    const randomTextureIndex = Math.floor(Math.random() * 4);
-
-    // console.log(`Kabose3h1Mtl_baseColor_${index}_${randomSubIndex}.png`);
-    console.log(`./model/robloxs/textures/${roblox2Texture[randomTextureIndex]}.png`);
-
+    const randomTextureIndex = Math.floor(Math.random() * 3 + 1);
+    console.log(randomTextureIndex)
     let roblox_txt = new THREE.TextureLoader().load(
-      // `./model/Roblox/textures/Kabose3h1Mtl_baseColor_${index}_${randomSubIndex}.png`
-      `./model/robloxs/textures/${roblox2Texture[index % 4 ]}.png`
+      `./model/roblox_gfx_girl/textures/Corl1Mtl_baseColor_${index}_${randomTextureIndex}.png`
     );
 
     roblox_txt.flipY = false;
@@ -78,25 +67,19 @@ export function Roblox2(index) {
       function (gltf) {
         console.log(gltf);
         model = gltf.scene;
-        // model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[0])
-        // model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[0])
-        // model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[0])
-        // model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[0])
-        // model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[0])
-        // model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[1])
-        // model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[1])
         model.traverse((o) => {
-          if (o.isMesh) {
-            o.castShadow = true;
+            console.log(o);
+            o.castShadow = true
             o.receiveShadow = true;
             o.material = stacy_mtl;
-          }
         });
 
-        model.scale.set(12, 12, 12);
+        model.scale.set(2.5, 2.5,2.5);
         model.position.y = -11;
-        model.position.x = 25;
+        model.position.x = 121;
+        model.position.z = 122;
         model.rotateY(Math.PI);
+
         scene.add(model);
       },
       undefined, // We don't need this function

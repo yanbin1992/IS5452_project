@@ -1,29 +1,61 @@
 import React from "react";
-import { Button, Input } from "antd";
-import axios from "axios";
+import { Button, Input, notification, Progress } from "antd";
+import { StopOutlined, SendOutlined } from "@ant-design/icons";
 
 export default function ChatInput(props) {
   const [inputText, setInputText] = React.useState("");
   const [degree, setDegree] = React.useState(3);
+
+  const openNotificationWithIcon = (type) => {
+    const placement = props.model === 1 ? "topLeft" : "topRight";
+    if (type === "error") {
+      notification[type]({
+        message: "Network Error",
+        description: "Network connection error, please check",
+        icon: <StopOutlined />,
+        placement,
+      });
+    } else if (type === "success") {
+      notification[type]({
+        message: "Send",
+        description: inputText,
+        icon: <SendOutlined />,
+        placement,
+      });
+    }
+  };
+
+  const openNotification = () => {
+    notification.error({
+      message: "Network Error",
+      description: "Network connection error, please check",
+      icon: <StopOutlined style={{ color: "#108ee9" }} />,
+    });
+  };
+
   const handleChange = (e) => {
     setInputText(e.target.value);
   };
   const postText = async (text) => {
-    const body = `1,${text}`;
-    await fetch("http://18.141.147.2:8080/test", {
+    const body = `${text}`;
+    await fetch(`http://18.141.147.2:8080/test/${props.model}`, {
       method: "POST",
       headers: {
         "Content-Type": "text/plain",
       },
-      // mode: "no-cors",
       body,
     })
       .then(function (response) {
+        openNotificationWithIcon("success");
         return response.text();
       })
       .then(function (data) {
         setDegree(parseInt(data) + 1);
         props.Roblox(parseInt(data) + 1); // this will be a string
+      })
+      .catch((error) => {
+        openNotificationWithIcon("error");
+        console.log(error);
       });
   };
   const onSubmit = async () => {
@@ -35,7 +67,7 @@ export default function ChatInput(props) {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
+    <div style={{ display: "flex", flexDirection: "row", alignItems:"center"}}>
       <Input
         value={inputText}
         onChange={handleChange}
@@ -44,7 +76,7 @@ export default function ChatInput(props) {
       <Button onClick={onSubmit} disabled={inputText === ""}>
         Submit
       </Button>
-      <div>{degree - 1}</div>
+      <Progress percent={degree / 5 * 100} steps={5} />
     </div>
   );
 }
