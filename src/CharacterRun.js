@@ -82,7 +82,7 @@ export default class CharacterRun extends Component {
                   ? LayoutHelper.windowHelper().width / 2
                   : LayoutHelper.windowHelper().width,
               height: LayoutHelper.windowHelper().height - 100,
-              zIndex: -1,
+              zIndex: 0,
             }}
           ></canvas>
         </div>
@@ -101,7 +101,6 @@ export default class CharacterRun extends Component {
                   LayoutHelper.windowHelper().height
                     ? "flex"
                     : "none",
-
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
@@ -121,7 +120,11 @@ export default class CharacterRun extends Component {
                 <Button onClick={() => Female(4)}>Test_4</Button>
                 <Button onClick={() => Female(5)}>Test_5</Button>
               </div>
-              <ChatInput Roblox={Female} model={2} style={{ width: "300px" }} />
+              <ChatInput
+                Roblox={Female}
+                model={2}
+                style={{ width: "300px" }}
+              />
             </div>
           )}
           <canvas
@@ -136,7 +139,7 @@ export default class CharacterRun extends Component {
                   ? LayoutHelper.windowHelper().width / 2
                   : 0,
               height: LayoutHelper.windowHelper().height - 100,
-              zIndex: -1,
+              zIndex: 0,
             }}
           ></canvas>
         </div>

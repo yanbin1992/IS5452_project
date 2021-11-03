@@ -4,7 +4,6 @@ import * as THREE from "three";
 import OrbitControls from "three-orbitcontrols";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
-
 export function Roblox(index) {
   // Set our main variables
   let scene,
@@ -12,13 +11,12 @@ export function Roblox(index) {
     camera,
     model, // Our character
     mixer, // THREE.js animations mixer
-    clock = new THREE.Clock() // Used for anims, which run to a clock instead of frame rate
+    clock = new THREE.Clock(); // Used for anims, which run to a clock instead of frame rate
 
   init(index);
 
   function init(index) {
-    const MODEL_PATH =
-    "./model/Roblox/scene.gltf"
+    const MODEL_PATH = "./model/Roblox/scene.gltf";
     const canvas = document.querySelector("#d");
     const backgroundColor = 0xf1f1f1;
 
@@ -45,8 +43,8 @@ export function Roblox(index) {
     camera.position.y = -3;
 
     const controls = new OrbitControls(camera, renderer.domElement);
-    const randomSubIndex = Math.floor(Math.random()*4 + 1)
-    console.log(`Kabose3h1Mtl_baseColor_${index}_${randomSubIndex}.png`)
+    const randomSubIndex = Math.floor(Math.random() * 4 + 1);
+    console.log(`Kabose3h1Mtl_baseColor_${index}_${randomSubIndex}.png`);
     let roblox_txt = new THREE.TextureLoader().load(
       `./model/Roblox/textures/Kabose3h1Mtl_baseColor_${index}_${randomSubIndex}.png`
     );
@@ -65,7 +63,7 @@ export function Roblox(index) {
       MODEL_PATH,
       function (gltf) {
         model = gltf.scene;
-        console.log(gltf)
+        console.log(gltf);
 
         model.traverse((o) => {
           if (o.isMesh) {
@@ -77,8 +75,8 @@ export function Roblox(index) {
 
         model.scale.set(2.5, 2.5, 2.5);
         model.position.y = -11;
-        model.rotateY(Math.PI)
-        console.log(model)
+        model.rotateY(Math.PI);
+        console.log(model);
         scene.add(model);
       },
       undefined, // We don't need this function
@@ -144,8 +142,8 @@ export function Roblox(index) {
     renderer.render(scene, camera);
     requestAnimationFrame(update);
   }
-  function changeTexture(){
-    console.log("changeTexture")
+  function changeTexture() {
+    console.log("changeTexture");
   }
 
   update();
@@ -159,10 +157,10 @@ export function Roblox(index) {
 
     const needResize =
       canvasPixelWidth !== width || canvasPixelHeight !== height;
+    console.log("window_Width", width);
     if (needResize) {
       renderer.setSize(width, height, false);
     }
     return needResize;
   }
-
 }
