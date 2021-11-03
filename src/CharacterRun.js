@@ -41,28 +41,45 @@ export default class CharacterRun extends Component {
       <div
         style={{
           display: "flex",
-          justifyContent: LayoutHelper.windowHelper().width > LayoutHelper.windowHelper().height ? "space-around" : "center",
+          justifyContent:
+            LayoutHelper.windowHelper().width >
+            LayoutHelper.windowHelper().height
+              ? "space-around"
+              : "center",
         }}
         ref={(mount) => {
           this.mount = mount;
         }}
       >
         <div className="container">
-          <div>
-            <Button onClick={() => Roblox(1)}>Test_1</Button>
-            <Button onClick={() => Roblox(2)}>Test_2</Button>
-            <Button onClick={() => Roblox(3)}>Test_3</Button>
-            <Button onClick={() => Roblox(4)}>Test_4</Button>
-            <Button onClick={() => Roblox(5)}>Test_5</Button>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div>
+              <Button onClick={() => Roblox(1)}>Test_1</Button>
+              <Button onClick={() => Roblox(2)}>Test_2</Button>
+              <Button onClick={() => Roblox(3)}>Test_3</Button>
+              <Button onClick={() => Roblox(4)}>Test_4</Button>
+              <Button onClick={() => Roblox(5)}>Test_5</Button>
+            </div>
+            <ChatInput Roblox={Roblox} style={{ width: "300px" }} />
           </div>
-          <ChatInput Roblox={Roblox} />
           <canvas
             id="d"
             style={{
               position: "absolute",
               top: "50px",
               left: 0,
-              width: LayoutHelper.windowHelper().width > LayoutHelper.windowHelper().height ? LayoutHelper.windowHelper().width / 2: LayoutHelper.windowHelper().width,
+              width:
+                LayoutHelper.windowHelper().width >
+                LayoutHelper.windowHelper().height
+                  ? LayoutHelper.windowHelper().width / 2
+                  : LayoutHelper.windowHelper().width,
               height: LayoutHelper.windowHelper().height - 100,
             }}
           ></canvas>
@@ -75,8 +92,16 @@ export default class CharacterRun extends Component {
           {this.state.stacyShow ? (
             <Button onClick={() => Stacy(5)}>Test</Button>
           ) : (
-            <div style={{display: LayoutHelper.windowHelper().width > LayoutHelper.windowHelper().height? "initial": "none"}}>
-              <div >
+            <div
+              style={{
+                display:
+                  LayoutHelper.windowHelper().width >
+                  LayoutHelper.windowHelper().height
+                    ? "initial"
+                    : "none",
+              }}
+            >
+              <div>
                 <Button onClick={() => Roblox2(1)}>Test_1</Button>
                 <Button onClick={() => Roblox2(2)}>Test_2</Button>
                 <Button onClick={() => Roblox2(3)}>Test_3</Button>
@@ -92,7 +117,11 @@ export default class CharacterRun extends Component {
               position: "absolute",
               top: "50px",
               right: 0,
-              width: LayoutHelper.windowHelper().width > LayoutHelper.windowHelper().height ? LayoutHelper.windowHelper().width / 2 : 0,
+              width:
+                LayoutHelper.windowHelper().width >
+                LayoutHelper.windowHelper().height
+                  ? LayoutHelper.windowHelper().width / 2
+                  : 0,
               height: LayoutHelper.windowHelper().height - 100,
             }}
           ></canvas>

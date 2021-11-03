@@ -1,0 +1,1 @@
+export const api_ip = "18.141.147.2:8080/test"
