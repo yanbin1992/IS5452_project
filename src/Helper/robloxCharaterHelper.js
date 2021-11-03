@@ -142,9 +142,6 @@ export function Roblox(index) {
     renderer.render(scene, camera);
     requestAnimationFrame(update);
   }
-  function changeTexture() {
-    console.log("changeTexture");
-  }
 
   update();
 
@@ -157,8 +154,9 @@ export function Roblox(index) {
 
     const needResize =
       canvasPixelWidth !== width || canvasPixelHeight !== height;
-    console.log("window_Width", width);
     if (needResize) {
+      console.log("window_Width", width);
+
       renderer.setSize(width, height, false);
     }
     return needResize;
