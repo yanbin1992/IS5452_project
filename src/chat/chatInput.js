@@ -38,7 +38,7 @@ export default function ChatInput(props) {
   };
   const postText = async (text) => {
     const body = `${text}`;
-    await fetch(`http://18.141.147.2:8080/test/${props.model}`, {
+    await fetch(`http://54.254.27.66:8080/test/${props.model}`, {
       method: "POST",
       headers: {
         "Content-Type": "text/plain",
