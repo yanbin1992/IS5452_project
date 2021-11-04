@@ -155,8 +155,6 @@ export function Roblox(index) {
     const needResize =
       canvasPixelWidth !== width || canvasPixelHeight !== height;
     if (needResize) {
-      console.log("window_Width", width);
-
       renderer.setSize(width, height, false);
     }
     return needResize;
