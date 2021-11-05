@@ -1,10 +1,11 @@
 import React from "react";
-import { Button, Input, notification, Progress } from "antd";
+import { Button, Input, notification, Progress, Spin } from "antd";
 import { StopOutlined, SendOutlined } from "@ant-design/icons";
 
 export default function ChatInput(props) {
   const [inputText, setInputText] = React.useState("");
   const [degree, setDegree] = React.useState(3);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const openNotificationWithIcon = (type) => {
     const placement = props.model === 1 ? "topLeft" : "topRight";
@@ -47,6 +48,7 @@ export default function ChatInput(props) {
     })
       .then(function (response) {
         openNotificationWithIcon("success");
+        setIsLoading(false);
         return response.text();
       })
       .then(function (data) {
@@ -54,6 +56,7 @@ export default function ChatInput(props) {
         props.Roblox(parseInt(data) + 1); // this will be a string
       })
       .catch((error) => {
+        setIsLoading(false);
         openNotificationWithIcon("error");
         console.log(error);
       });
@@ -61,22 +64,40 @@ export default function ChatInput(props) {
   const onSubmit = async () => {
     // const randomeIndex= Math.floor(Math.random()*4 + 1)
     // props.Roblox(randomeIndex);
-
+    setIsLoading(true);
     await postText(inputText);
     setInputText("");
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "row", alignItems:"center", zIndex: 1}}>
-      <Input
-        value={inputText}
-        onChange={handleChange}
-        style={{ width: "400px" }}
-      ></Input>
-      <Button onClick={onSubmit} disabled={inputText === ""}>
-        Submit
-      </Button>
-      <Progress percent={degree / 5 * 100} steps={5} />
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        zIndex: 1
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          zIndex: 1,
+          margin:"5px 0"
+        }}
+      >
+        <Input
+          value={inputText}
+          onChange={handleChange}
+          style={{ width: "350px" }}
+          disabled={isLoading}
+        ></Input>
+        <Button onClick={onSubmit} disabled={inputText === "" || isLoading}>
+          {isLoading ? <Spin /> : "Submit"}
+        </Button>
+      </div>
+      <Progress percent={((degree - 1) / 4) * 100} steps={4} />
     </div>
   );
 }
