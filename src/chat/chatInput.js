@@ -39,7 +39,8 @@ export default function ChatInput(props) {
   };
   const postText = async (text) => {
     const body = `${text}`;
-    await fetch(`http://api.affective3d.top:8080/test/${props.model}`, {
+    const apiURL = process.env.REACT_APP_BASE_URL
+    await fetch(`${apiURL}/test/${props.model}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
