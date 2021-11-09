@@ -9,21 +9,21 @@ export default function ChatInput(props) {
     setInputText(e.target.value);
   };
   const postText = async (text) => {
-    const body = `1,${text}`;
+    const body = { model: 1, text: "test" };
     await fetch("http://18.141.147.2:8080/test", {
       method: "POST",
       headers: {
-        "Content-Type": "text/plain",
+        "Content-Type": "application/json",
       },
-      // mode: "no-cors",
-      body,
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(body),
     })
       .then(function (response) {
         return response.text();
       })
       .then(function (data) {
         setDegree(parseInt(data) + 1);
-        props.Roblox(parseInt(data) + 1); // this will be a string
+        props.Roblox(parseInt(data) + 1); // this will be a int
       });
   };
   const onSubmit = async () => {
