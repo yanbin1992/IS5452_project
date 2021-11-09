@@ -3,6 +3,7 @@ import * as LayoutHelper from "./Helper/LayoutHelper";
 import { Stacy } from "./Helper/stacyCharaterHelper";
 import { Roblox } from "./Helper/robloxCharaterHelper";
 import { Roblox2 } from "./Helper/robloxCharaterHelper2";
+import { Female } from "./Helper/femaleCharaterHelper";
 import ChatInput from "./chat/chatInput";
 import { Button, Input } from "antd";
 
@@ -28,7 +29,7 @@ export default class CharacterRun extends Component {
       if (this.state.stacyShow === true) {
         Stacy(5);
       } else {
-        Roblox2(3);
+        Female(3);
       }
     }
 
@@ -67,7 +68,7 @@ export default class CharacterRun extends Component {
               <Button onClick={() => Roblox(4)}>Test_4</Button>
               <Button onClick={() => Roblox(5)}>Test_5</Button>
             </div>
-            <ChatInput Roblox={Roblox} style={{ width: "300px" }} />
+            <ChatInput Roblox={Roblox} model={1} style={{ width: "300px" }} />
           </div>
           <canvas
             id="d"
@@ -81,6 +82,7 @@ export default class CharacterRun extends Component {
                   ? LayoutHelper.windowHelper().width / 2
                   : LayoutHelper.windowHelper().width,
               height: LayoutHelper.windowHelper().height - 100,
+              zIndex: 0,
             }}
           ></canvas>
         </div>
@@ -97,18 +99,32 @@ export default class CharacterRun extends Component {
                 display:
                   LayoutHelper.windowHelper().width >
                   LayoutHelper.windowHelper().height
-                    ? "initial"
+                    ? "flex"
                     : "none",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              <div>
+              {/* <div>
                 <Button onClick={() => Roblox2(1)}>Test_1</Button>
                 <Button onClick={() => Roblox2(2)}>Test_2</Button>
                 <Button onClick={() => Roblox2(3)}>Test_3</Button>
                 <Button onClick={() => Roblox2(4)}>Test_4</Button>
                 <Button onClick={() => Roblox2(5)}>Test_5</Button>
+              </div> */}
+              <div>
+                <Button onClick={() => Female(1)}>Test_1</Button>
+                <Button onClick={() => Female(2)}>Test_2</Button>
+                <Button onClick={() => Female(3)}>Test_3</Button>
+                <Button onClick={() => Female(4)}>Test_4</Button>
+                <Button onClick={() => Female(5)}>Test_5</Button>
               </div>
-              <ChatInput Roblox={Roblox2} />
+              <ChatInput
+                Roblox={Female}
+                model={2}
+                style={{ width: "300px" }}
+              />
             </div>
           )}
           <canvas
@@ -123,6 +139,7 @@ export default class CharacterRun extends Component {
                   ? LayoutHelper.windowHelper().width / 2
                   : 0,
               height: LayoutHelper.windowHelper().height - 100,
+              zIndex: 0,
             }}
           ></canvas>
         </div>

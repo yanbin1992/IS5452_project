@@ -78,13 +78,13 @@ export function Roblox2(index) {
       function (gltf) {
         console.log(gltf);
         model = gltf.scene;
-        model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[0])
-        model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[0])
-        model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[0])
-        model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[0])
-        model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[0])
-        model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[1])
-        model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[1])
+        // model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[0])
+        // model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[0])
+        // model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[0])
+        // model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[0])
+        // model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[0])
+        // model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[1])
+        // model.children[0].children[0].children[0].remove(model.children[0].children[0].children[0].children[1])
         model.traverse((o) => {
           if (o.isMesh) {
             o.castShadow = true;
