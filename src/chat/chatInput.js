@@ -39,11 +39,11 @@ export default function ChatInput(props) {
   };
   const postText = async (text) => {
     const body = `${text}`;
-    const apiURL = process.env.REACT_APP_BASE_URL
+    const apiURL = process.env.REACT_APP_BASE_URL;
     await fetch(`${apiURL}/test/${props.model}`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "text/plain",
       },
       body,
     })
@@ -76,7 +76,7 @@ export default function ChatInput(props) {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        zIndex: 1
+        zIndex: 1,
       }}
     >
       <div
@@ -85,7 +85,7 @@ export default function ChatInput(props) {
           flexDirection: "row",
           alignItems: "center",
           zIndex: 1,
-          margin:"5px 0"
+          margin: "5px 0",
         }}
       >
         <Input
