@@ -1,5 +1,3 @@
-import React, { Component } from "react";
-import reactDom from "react-dom";
 import * as THREE from "three";
 import OrbitControls from "three-orbitcontrols";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
@@ -69,7 +67,7 @@ export function Roblox(index) {
           if (o.isMesh) {
             o.castShadow = true;
             o.receiveShadow = true;
-            o.material = stacy_mtl;
+            // o.material = stacy_mtl;
           }
         });
 

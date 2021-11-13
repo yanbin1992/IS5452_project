@@ -1,5 +1,3 @@
-import React, { Component } from "react";
-import reactDom from "react-dom";
 import * as THREE from "three";
 import OrbitControls from "three-orbitcontrols";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";

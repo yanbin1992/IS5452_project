@@ -1,5 +1,3 @@
-import React, { Component } from "react";
-import reactDom from "react-dom";
 import * as THREE from "three";
 import OrbitControls from "three-orbitcontrols";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
@@ -65,13 +63,11 @@ export function Female(index) {
     loader.load(
       MODEL_PATH,
       function (gltf) {
-        console.log(gltf);
         model = gltf.scene;
         model.traverse((o) => {
-            console.log(o);
             o.castShadow = true
             o.receiveShadow = true;
-            o.material = stacy_mtl;
+            // o.material = stacy_mtl;
         });
 
         model.scale.set(2.5, 2.5,2.5);
