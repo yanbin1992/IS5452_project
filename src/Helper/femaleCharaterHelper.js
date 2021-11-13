@@ -67,7 +67,7 @@ export function Female(index) {
         model.traverse((o) => {
             o.castShadow = true
             o.receiveShadow = true;
-            // o.material = stacy_mtl;
+            o.material = stacy_mtl;
         });
 
         model.scale.set(2.5, 2.5,2.5);
