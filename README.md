@@ -26,4 +26,4 @@ Modifiy [REACT_APP_BASE_URL] as the [http://api.affective3d.top:8080] or [your_b
 
 ## Backend folder
 Please notice that the backend code is in folder /Backend.  
-You can download the code and deploy the backend service separately.
+You can download the code and deploy the backend service separately following README.md in the folder.  
