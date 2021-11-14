@@ -8,7 +8,7 @@ Here are the packages needed to run the service:
 3. pandas
 4. pickle
 5. tensorflow  
-6. numpy
+6. numpy  
 After installing all the required packages, run the following command  
 `sudo python3 backend.py 8080`  
 It will run the service on port 8080.
