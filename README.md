@@ -24,3 +24,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 If no .env file, "cp .env.example .env"
 Modifiy [REACT_APP_BASE_URL] as the [http://api.affective3d.top:8080] or [your_backend_url]
 
+## Backend folder
+Please notice that the backend code is in folder /Backend.  
+You can download the code and deploy the backend service separately.
