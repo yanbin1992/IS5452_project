@@ -4,6 +4,7 @@ IS5452, Group6, Emotional 3D avatar visualization using sentiment analysis model
 
 This project was bootstrapped with [IS5452 project](https://github.com/yanbin1992/IS5452_project).
 
+Web: http://www.affective3d.top
 
 ## Available Scripts
 
