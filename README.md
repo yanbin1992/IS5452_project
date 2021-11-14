@@ -13,10 +13,10 @@ In the project directory, you can run:
 
 To install the node_modules.
 
-### `ENV` Configuration
+### `cp .env.example .env`
 
-If no .env file, "cp .env.example .env"
-Modifiy [REACT_APP_BASE_URL] as the [http://api.affective3d.top:8080] or [your_backend_url]
+If no .env file, "cp .env.example .env" to add the .env file.
+And also need to check and modify [REACT_APP_BASE_URL] as the [http://api.affective3d.top:8080] or [your_backend_url]
 
 ### `yarn start`
 
@@ -28,7 +28,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-### `script` 
+### `./script/update.sh` or `./script/newRelease.sh` 
 
 Two scripts in /script folder to help update the web server.
 
