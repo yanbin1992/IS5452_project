@@ -1,5 +1,6 @@
 # IS5452_project_Backend
-This is the python script to start the sentiment analysis service on localhost/8080.  
+File backend.py is the python script to start the sentiment analysis service on localhost/8080. 
+Other files are for predict function and the model data.  
 ## How to run the script  
 First you need to install python3 (version 3.8 or later) as well as the packages needed.
 Here are the packages needed to run the service:
