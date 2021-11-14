@@ -7,7 +7,7 @@ Here are the packages needed to run the service:
 2. pysentimiento
 3. pandas
 4. pickle
-5. tensorflow
+5. tensorflow  
 6. numpy
 After installing all the required packages, run the following command  
 `sudo python3 backend.py 8080`  
