@@ -1,0 +1,10 @@
+nltk==3.4.5
+numpy==1.21.2
+pandas==1.2.3
+pysentimiento==0.2.5
+pyspellchecker==0.6.2
+spellchecker==0.4
+tensorflow==2.7.0
+tensorflow_macos==2.6.0
+torch==1.9.0
+transformers==4.12.2
