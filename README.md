@@ -6,27 +6,31 @@ This project was bootstrapped with [IS5452 project](https://github.com/yanbin199
 
 Web: http://www.affective3d.top
 
-## Available Scripts
+## Frontend
 
 In the project directory, you can run:
+### `yarn install`
+
+To install the node_modules.
+
+### `ENV` Configuration
+
+If no .env file, "cp .env.example .env"
+Modifiy [REACT_APP_BASE_URL] as the [http://api.affective3d.top:8080] or [your_backend_url]
 
 ### `yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `yarn install`
-
 ### `yarn build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
+### `script` 
 
-### `ENV` Configuration
-
-If no .env file, "cp .env.example .env"
-Modifiy [REACT_APP_BASE_URL] as the [http://api.affective3d.top:8080] or [your_backend_url]
+Two scripts in /script folder to help update the web server.
 
 ## Backend folder
 Please notice that the backend code is in folder /Backend.  
