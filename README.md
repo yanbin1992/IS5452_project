@@ -30,3 +30,7 @@ Modifiy [REACT_APP_BASE_URL] as the [http://api.affective3d.top:8080] or [your_b
 ## Backend folder
 Please notice that the backend code is in folder /Backend.  
 You can download the code and deploy the backend service separately following README.md in the folder.  
+
+## Analysis_model folder
+Please notice that the sentiment analysis modeling code is in folder /Analysis_model.  
+You can download the code and run the sentiment analysis codes following README.md in the folder.  
