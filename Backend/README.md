@@ -10,8 +10,8 @@ Here are the packages needed to run the service:
 5. tensorflow  
 6. numpy  
 
-After installing all the required packages, run the following command  
-`sudo python3 backend.py 8080`  
-It will run the service on port 8080.  
+After installing all the required packages, run the following command which will run the service on port 8080  
+`sudo python3 backend.py 8080`   
+
 Or if you want to continuously run the script on background, please run  
 `sudo nohup python3 backend.py 8080 &` 
